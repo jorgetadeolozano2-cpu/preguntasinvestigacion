@@ -1,1 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cuestionario Fidelización – RunFast S.A.S.</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121924; --muted:#a8b3cf; --text:#e6edf3; --accent:#7cdd8e;
+    --danger:#ff6b6b; --ok:#5dd39e; --warning:#f7b267; --border:#223042; --pill:#1c2a3a;
+    --focus:#7cdd8e; --link:#8ab4ff;
+  }
+  html,body{background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; line-height:1.35;}
+  h1,h2,h3{margin:0.6rem 0;}
+  .wrap{max-width:980px; margin:24px auto; padding:0 16px;}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.25);}
+  table{width:100%; border-collapse:collapse; font-size:.96rem;}
+  th,td{border:1px solid var(--border); padding:10px; vertical-align:top;}
+  th{background:#162334; text-align:left;}
+  caption{caption-side:top; text-align:left; font-weight:700; margin-bottom:8px;}
+  .grid{display:grid; gap:16px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .section{margin-top:20px;}
+  .required::after{content:" *"; color:var(--warning); font-weight:700;}
+  .muted{color:var(--muted); font-size:.92rem;}
+  .field{margin:12px 0;}
+  input[type="number"], input[type="text"], textarea, select{
+    width:100%; background:#0f1724; color:var(--text); border:1px solid var(--border);
+    border-radius:12px; padding:10px 12px; outline:none;
+  }
+  textarea{min-height:110px; resize:vertical;}
+  input:focus, textarea:focus, select:focus{border-color:var(--focus); box-shadow:0 0 0 3px #7cdd8e33;}
+  .pillset{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .pill{position:relative;}
+  .pill input{position:absolute; inset:0; opacity:0;}
+  .pill span{
+    display:inline-block; background:var(--pill); color:var(--text);
+    padding:8px 12px; border-radius:999px; border:1px solid var(--border); user-select:none;
+  }
+  .pill input:focus + span{outline:3px solid #7cdd8e33;}
+  .pill input:checked + span{background:#1f3b2a; border-color:#29563a; color:#bff2c8;}
+  .likert{display:flex; flex-wrap:wrap; gap:6px;}
+  .likert .pill span{min-width:44px; text-align:center;}
+  .nps{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
+  .nps .pill span{min-width:36px; text-align:center;}
+  .nps .pill input:checked + span{background:#233a7a; border-color:#2f59c1;}
+  .nps .pill[data-zone="d"] span{background:#3a1f1f;}
+  .nps .pill[data-zone="p"] span{background:#2d2a1f;}
+  .nps .pill[data-zone="pr"] span{background:#1f2e1f;}
+  .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  button{
+    background:#1b2a3a; color:var(--text); border:1px solid var(--border); padding:10px 14px;
+    border-radius:12px; cursor:pointer;
+  }
+  button.primary{background:#18412c; border-color:#2a6a46;}
+  button:hover{filter:brightness(1.05);}
+  .error{color:var(--danger); font-weight:600;}
+  .sr{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .divider{height:1px; background:var(--border); margin:18px 0;}
+  .footer-note{font-size:.85rem; color:var(--muted); margin-top:10px;}
+  .summary pre{background:#0f1724; border:1px solid var(--border); border-radius:12px; padding:12px; overflow:auto;}
+  .tag{display:inline-block; padding:2px 8px; border-radius:999px; background:#20334a; color:#9cc5ff; font-size:.78rem; border:1px solid var(--border); margin-left:8px;}
+  .kpi{display:inline-grid; grid-template-columns:auto auto; gap:4px 12px; align-items:center; background:#0f1724; border:1px dashed var(--border); border-radius:12px; padding:10px 12px;}
+  .kpi strong{font-size:1.05rem;}
+  .file{display:inline-block; padding:8px 12px; border:1px dashed var(--border); border-radius:10px;}
+  @media (max-width:760px){ .g2{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="section">
+    <h1>Estudio de Fidelización – RunFast S.A.S. <span class="tag">Cuestionario</span></h1>
+    <p class="muted">Este formulario recoge percepciones clave sobre experiencia post-compra, producto, interacción digital, precio–valor e intención de recompra. <strong>(*) campos obligatorios</strong>.</p>
+  </header>
+
+  <!-- BLOQUE A: TABLA DE OPERACIONALIZACIÓN -->
+  <section class="section card" aria-labelledby="op-title">
+    <h2 id="op-title">Tabla de operacionalización (resumen)</h2>
+    <table role="table" aria-describedby="op-desc">
+      <caption id="op-desc" class="sr">Variables, definiciones e indicadores a medir</caption>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Definición conceptual</th>
+          <th>Definición operacional</th>
+          <th>Indicadores / Ítems</th>
+          <th>Tipo de escala</th>
+          <th>Fuente/Referencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Experiencia post-compra</td>
+          <td>Evaluación del servicio posterior a la compra (logística y soporte).</td>
+          <td>Puntuación percibida en entrega, devoluciones y garantías.</td>
+          <td>Q3–Q5</td>
+          <td>Likert 1–5</td>
+          <td>Parasuraman et al. (SERVQUAL)</td>
+        </tr>
+        <tr>
+          <td>Calidad percibida del producto</td>
+          <td>Percepción sobre desempeño del calzado adquirido.</td>
+          <td>Puntuación de ajuste y durabilidad.</td>
+          <td>Q6–Q7</td>
+          <td>Likert 1–5</td>
+          <td>Zeithaml (calidad percibida)</td>
+        </tr>
+        <tr>
+          <td>Interacción digital</td>
+          <td>Valor percibido de la personalización y comunicaciones digitales.</td>
+          <td>Satisfacción con personalización de ofertas.</td>
+          <td>Q8</td>
+          <td>Likert 1–5</td>
+          <td>Marketing digital relacional</td>
+        </tr>
+        <tr>
+          <td>Percepción precio–valor</td>
+          <td>Relación entre beneficios percibidos y precio pagado.</td>
+          <td>Comparación frente a alternativas (Decathlon, Mercado Libre).</td>
+          <td>Q9</td>
+          <td>Likert 1–5</td>
+          <td>Monroe (valor percibido)</td>
+        </tr>
+        <tr>
+          <td>Conducta de compra</td>
+          <td>Historial reciente de compras.</td>
+          <td>Número de compras en los últimos 12 meses.</td>
+          <td>Q1</td>
+          <td>Razón</td>
+          <td>Registro de cliente</td>
+        </tr>
+        <tr>
+          <td>Intención de recompra</td>
+          <td>Probabilidad percibida de volver a comprar.</td>
+          <td>Escala ordinal de probabilidad a 6 meses.</td>
+          <td>Q2</td>
+          <td>Ordinal</td>
+          <td>Malhotra (intención)</td>
+        </tr>
+        <tr>
+          <td>Recomendación (NPS)</td>
+          <td>Disposición a recomendar la tienda.</td>
+          <td>Escala 0–10 detractores / pasivos / promotores.</td>
+          <td>Q10</td>
+          <td>NPS 0–10</td>
+          <td>Reichheld</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="footer-note">Las preguntas (Q1–Q10) corresponden al bloque de cuestionario más abajo.</p>
+  </section>
+
+  <!-- BLOQUE B: CUESTIONARIO -->
+  <form id="form" class="section card" novalidate>
+    <h2>Cuestionario (10 ítems)</h2>
+    <p class="muted">Marca la opción que mejor refleje tu experiencia. La mayoría de ítems usan escala 1–5 (1=Muy en desacuerdo/insatisfecho, 5=Muy de acuerdo/satisfecho).</p>
+
+    <div id="errors" class="error" aria-live="assertive"></div>
+    <div class="divider"></div>
+
+    <!-- Q1 -->
+    <div class="field">
+      <label for="q1" class="required"><strong>Q1.</strong> ¿Cuántas compras has realizado en RunFast en los últimos 12 meses?</label>
+      <input id="q1" name="q1_compras_12m" type="number" min="0" step="1" inputmode="numeric" required aria-describedby="q1h" />
+      <div id="q1h" class="muted">Escala de razón (número entero ≥ 0).</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="field">
+      <span class="required"><strong>Q2.</strong> ¿Qué tan probable es que vuelvas a comprar en RunFast en los próximos 6 meses?</span>
+      <div class="pillset" role="radiogroup" aria-label="Intención de recompra">
+        <label class="pill"><input type="radio" name="q2_int_recompra" value="Muy probable" required><span>Muy probable</span></label>
+        <label class="pill"><input type="radio" name="q2_int_recompra" value="Probable"><span>Probable</span></label>
+        <label class="pill"><input type="radio" name="q2_int_recompra" value="Ni probable ni improbable"><span>Ni probable ni improbable</span></label>
+        <label class="pill"><input type="radio" name="q2_int_recompra" value="Poco probable"><span>Poco probable</span></label>
+        <label class="pill"><input type="radio" name="q2_int_recompra" value="Nada probable"><span>Nada probable</span></label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3>Experiencia post-compra</h3>
+
+    <!-- Q3 -->
+    <div class="field">
+      <span class="required"><strong>Q3.</strong> Satisfacción con <em>tiempos de entrega</em>.</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Tiempos de entrega">
+        <label class="pill"><input type="radio" name="q3_entregas" value="1" required><span>1</span></label>
+        <label class="pill"><input type="radio" name="q3_entregas" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q3_entregas" value="3"><span>3</span></label>
+        <label class="pill"><input type="radio" name="q3_entregas" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q3_entregas" value="5"><span>5</span></label>
+      </div>
+      <div class="muted">1 = Muy insatisfecho · 5 = Muy satisfecho</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="field">
+      <span class="required"><strong>Q4.</strong> Satisfacción con el <em>proceso de devoluciones</em>.</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Devoluciones">
+        <label class="pill"><input type="radio" name="q4_devoluciones" value="1" required><span>1</span></label>
+        <label class="pill"><input type="radio" name="q4_devoluciones" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q4_devoluciones" value="3"><span>3</span></label>
+        <label class="pill"><input type="radio" name="q4_devoluciones" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q4_devoluciones" value="5"><span>5</span></label>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="field">
+      <span class="required"><strong>Q5.</strong> Satisfacción con la <em>atención en garantía</em>.</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Garantías">
+        <label class="pill"><input type="radio" name="q5_garantias" value="1" required><span>1</span></label>
+        <label class="pill"><input type="radio" name="q5_garantias" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q5_garantias" value="3"><span>3</span></label>
+        <label class="pill"><input type="radio" name="q5_garantias" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q5_garantias" value="5"><span>5</span></label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3>Producto</h3>
+
+    <!-- Q6 -->
+    <div class="field">
+      <span class="required"><strong>Q6.</strong> El <em>ajuste del calzado</em> comprado en RunFast cumple mis expectativas.</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Ajuste del calzado">
+        <label class="pill"><input type="radio" name="q6_ajuste" value="1" required><span>1</span></label>
+        <label class="pill"><input type="radio" name="q6_ajuste" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q6_ajuste" value="3"><span>3</span></label>
+        <label class="pill"><input type="radio" name="q6_ajuste" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q6_ajuste" value="5"><span>5</span></label>
+      </div>
+      <div class="muted">1 = Totalmente en desacuerdo · 5 = Totalmente de acuerdo</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="field">
+      <span class="required"><strong>Q7.</strong> La <em>durabilidad</em> del calzado ha sido adecuada para mis entrenamientos.</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Durabilidad">
+        <label class="pill"><input type="radio" name="q7_durabilidad" value="1" required><span>1</span></label>
+        <label class="pill"><input type="radio" name="q7_durabilidad" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q7_durabilidad" value="3"><span>3</span></label>
+        <label class="pill"><input type="radio" name="q7_durabilidad" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q7_durabilidad" value="5"><span>5</span></label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3>Interacción digital y valor</h3>
+
+    <!-- Q8 -->
+    <div class="field">
+      <span class="required"><strong>Q8.</strong> La <em>personalización de ofertas</em> que recibo de RunFast es relevante para mí.</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Personalización de ofertas">
+        <label class="pill"><input type="radio" name="q8_personalizacion" value="1" required><span>1</span></label>
+        <label class="pill"><input type="radio" name="q8_personalizacion" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q8_personalizacion" value="3"><span>3</span></label>
+        <label class="pill"><input type="radio" name="q8_personalizacion" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q8_personalizacion" value="5"><span>5</span></label>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="field">
+      <span class="required"><strong>Q9.</strong> En comparación con otras tiendas (Decathlon, Mercado Libre), la <em>relación precio–valor</em> de RunFast es…</span>
+      <div class="likert pillset" role="radiogroup" aria-label="Precio–valor">
+        <label class="pill"><input type="radio" name="q9_preciovalor" value="1" required><span>1<br><small>Mucho peor</small></span></label>
+        <label class="pill"><input type="radio" name="q9_preciovalor" value="2"><span>2</span></label>
+        <label class="pill"><input type="radio" name="q9_preciovalor" value="3"><span>3<br><small>Igual</small></span></label>
+        <label class="pill"><input type="radio" name="q9_preciovalor" value="4"><span>4</span></label>
+        <label class="pill"><input type="radio" name="q9_preciovalor" value="5"><span>5<br><small>Mucho mejor</small></span></label>
+      </div>
+    </div>
+
+    <!-- Q10 NPS -->
+    <div class="field">
+      <span class="required"><strong>Q10.</strong> En una escala de 0 a 10, ¿qué tan probable es que <em>recomiendes</em> RunFast a un amigo o colega?</span>
+      <div class="nps" role="radiogroup" aria-label="NPS">
+        <!-- 0–6 detractores, 7–8 pasivos, 9–10 promotores -->
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="0" required><span>0</span></label>
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="1"><span>1</span></label>
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="2"><span>2</span></label>
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="3"><span>3</span></label>
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="4"><span>4</span></label>
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="5"><span>5</span></label>
+        <label class="pill" data-zone="d"><input type="radio" name="q10_nps" value="6"><span>6</span></label>
+        <label class="pill" data-zone="p"><input type="radio" name="q10_nps" value="7"><span>7</span></label>
+        <label class="pill" data-zone="p"><input type="radio" name="q10_nps" value="8"><span>8</span></label>
+        <label class="pill" data-zone="pr"><input type="radio" name="q10_nps" value="9"><span>9</span></label>
+        <label class="pill" data-zone="pr"><input type="radio" name="q10_nps" value="10"><span>10</span></label>
+      </div>
+      <div class="muted">0 = Nada probable · 10 = Muy probable</div>
+    </div>
+
+    <!-- Comentario opcional -->
+    <div class="field">
+      <label for="q11_coment">Comentario adicional (opcional)</label>
+      <textarea id="q11_coment" name="q11_coment" placeholder="Cuéntanos qué deberíamos mejorar…"></textarea>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Acciones -->
+    <div class="actions">
+      <button type="button" id="btnResumen">Ver resumen</button>
+      <button type="submit" class="primary">Validar</button>
+      <button type="button" id="btnClear">Borrar respuestas</button>
+      <button type="button" id="btnExportCSV">Exportar CSV</button>
+      <button type="button" id="btnExportJSON">Exportar JSON</button>
+      <label class="file">
+        Importar JSON
+        <input type="file" id="importJSON" accept="application/json" style="display:none">
+      </label>
+    </div>
+
+    <p class="footer-note">Tus respuestas se guardan automáticamente en este navegador (localStorage). Puedes exportarlas para analizarlas en Excel, Power BI, R o Python.</p>
+
+    <!-- Resumen -->
+    <div id="resumen" class="summary section" hidden>
+      <h3>Resumen previo</h3>
+      <div class="kpi">
+        <span>Compras 12m:</span><strong id="kpiCompras">–</strong>
+        <span>NPS:</span><strong id="kpiNPS">–</strong>
+        <span>Int. recompra:</span><strong id="kpiInt">–</strong>
+      </div>
+      <pre id="jsonPreview" aria-live="polite"></pre>
+    </div>
+  </form>
+
+  <footer class="section muted">
+    <p>Plantilla accesible (tema oscuro). Controles con foco visible, mensajes de error con <code>aria-live</code>, y validación estricta de obligatorios.</p>
+  </footer>
+</div>
+
+<script>
+/* ===========================
+   Utilidades y constantes
+   =========================== */
+const form = document.getElementById('form');
+const errBox = document.getElementById('errors');
+const resumenBox = document.getElementById('resumen');
+const jsonPreview = document.getElementById('jsonPreview');
+const kpiCompras = document.getElementById('kpiCompras');
+const kpiNPS = document.getElementById('kpiNPS');
+const kpiInt = document.getElementById('kpiInt');
+const KEY = 'runfast_fidelizacion_v1';
+
+const requiredNames = [
+  'q1_compras_12m','q2_int_recompra','q3_entregas','q4_devoluciones',
+  'q5_garantias','q6_ajuste','q7_durabilidad','q8_personalizacion',
+  'q9_preciovalor','q10_nps'
+];
+
+/* Serializa el formulario a objeto plano */
+function serializeForm() {
+  const data = {};
+  const fd = new FormData(form);
+  for (const [k, v] of fd.entries()) {
+    if (data[k] !== undefined) {
+      if (!Array.isArray(data[k])) data[k] = [data[k]];
+      data[k].push(v);
+    } else {
+      data[k] = v;
+    }
+  }
+  return data;
+}
+
+/* Validación estricta de obligatorios */
+function validate() {
+  errBox.textContent = '';
+  const missing = [];
+  requiredNames.forEach(name => {
+    const els = form.querySelectorAll(`[name="${name}"]`);
+    if (!els.length) return;
+    let filled = false;
+    els.forEach(el => {
+      if ((el.type === 'radio' || el.type === 'checkbox') && el.checked) filled = true;
+      else if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') && el.value !== '') filled = true;
+    });
+    if (!filled) missing.push(name);
+  });
+  if (missing.length) {
+    errBox.textContent = 'Por favor completa todos los campos obligatorios marcados con *.';
+    const firstMissing = missing[0];
+    const focusEl = form.querySelector(`[name="${firstMissing}"]`);
+    if (focusEl) focusEl.focus();
+    return false;
+  }
+  return true;
+}
+
+/* Guarda/recupera localStorage */
+function saveLocal() {
+  localStorage.setItem(KEY, JSON.stringify(serializeForm()));
+}
+function loadLocal() {
+  const raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try{
+    const data = JSON.parse(raw);
+    fillForm(data);
+  }catch(e){ console.warn('No se pudo cargar localStorage', e); }
+}
+function clearLocal() { localStorage.removeItem(KEY); }
+
+/* Llenado del formulario desde objeto */
+function fillForm(data) {
+  Object.entries(data).forEach(([k,v])=>{
+    const els = form.querySelectorAll(`[name="${k}"]`);
+    if (!els.length) return;
+    if (els[0].type === 'radio' || els[0].type === 'checkbox') {
+      els.forEach(el=>{ el.checked = String(v) === el.value; });
+    } else {
+      els[0].value = v;
+    }
+  });
+}
+
+/* Construye CSV simple (columna por nombre de campo) */
+function toCSV(obj){
+  const headers = Object.keys(obj);
+  const values = headers.map(h => `"${String(obj[h]).replace(/"/g,'""')}"`);
+  return headers.join(',') + '\n' + values.join(',');
+}
+function download(filename, content, type='text/plain'){
+  const blob = new Blob([content], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* Resumen previo */
+function showSummary() {
+  const data = serializeForm();
+  // KPIs
+  kpiCompras.textContent = data.q1_compras_12m ?? '–';
+  kpiNPS.textContent = data.q10_nps ?? '–';
+  kpiInt.textContent = data.q2_int_recompra ?? '–';
+  jsonPreview.textContent = JSON.stringify(data, null, 2);
+  resumenBox.hidden = false;
+  resumenBox.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* Eventos */
+form.addEventListener('input', saveLocal);
+form.addEventListener('change', saveLocal);
+
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  if (!validate()) return;
+  saveLocal();
+  showSummary();
+});
+
+document.getElementById('btnResumen').addEventListener('click', showSummary);
+
+document.getElementById('btnClear').addEventListener('click', ()=>{
+  form.reset(); clearLocal(); resumenBox.hidden = true; errBox.textContent='';
+  form.querySelector('input,select,textarea').focus();
+});
+
+document.getElementById('btnExportCSV').addEventListener('click', ()=>{
+  if (!validate()) return;
+  const csv = toCSV(serializeForm());
+  download('runfast_respuesta.csv', csv, 'text/csv;charset=utf-8;');
+});
+
+document.getElementById('btnExportJSON').addEventListener('click', ()=>{
+  if (!validate()) return;
+  const json = JSON.stringify(serializeForm(), null, 2);
+  download('runfast_respuesta.json', json, 'application/json;charset=utf-8;');
+});
+
+document.getElementById('importJSON').addEventListener('change', (e)=>{
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const data = JSON.parse(reader.result);
+      fillForm(data); saveLocal(); showSummary();
+    }catch(err){ errBox.textContent = 'Archivo JSON no válido.'; }
+  };
+  reader.readAsText(file);
+});
+
+/* Inicialización */
+loadLocal();
+</script>
+</body>
+</html>
 
